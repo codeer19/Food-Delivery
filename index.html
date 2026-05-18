@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiteLocal — Neighborhood Food Delivery</title>
+  <meta name="description" content="Order food online from the best local restaurants in Chandigarh, Patiala, and Rajpura. Search by dish, browse menus, and get fast delivery.">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Bite<span>Local</span></a>
+    <div class="nav-right">
+      <select id="citySelector" class="city-selector">
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="Patiala">Patiala</option>
+        <option value="Rajpura">Rajpura</option>
+      </select>
+      <span class="nav-link" id="navBrowse" onclick="showPage('browse')">Browse</span>
+      <span class="nav-link" id="navOrders" onclick="showPage('orders')">Orders</span>
+      <button class="cart-btn" id="cartToggle">
+        Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── BROWSE PAGE ── -->
+  <div id="page-browse">
+
+    <div class="hero">
+      <p class="hero-eyebrow">Delivery in 25-40 min</p>
+      <h1>Good food,<br><em>right to you.</em></h1>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search dishes - try 'biryani', 'pizza'...">
+        <button class="btn-primary" onclick="handleSearch()">Search</button>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Featured dishes -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Trending now</h2>
+        <span class="section-sub">See all</span>
+      </div>
+      <div class="featured-strip" id="featuredStrip"></div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Restaurant listing -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Restaurants near you</h2>
+      </div>
+      <div class="filters" id="filters">
+        <span class="filter-pill active" data-filter="all">All</span>
+        <span class="filter-pill" data-filter="indian">Indian</span>
+        <span class="filter-pill" data-filter="fast">Fast food</span>
+        <span class="filter-pill" data-filter="pizza">Pizza</span>
+        <span class="filter-pill" data-filter="chinese">Chinese</span>
+        <span class="filter-pill" data-filter="biryani">Biryani</span>
+        <span class="filter-pill" data-filter="cafe">Café</span>
+        <span class="filter-pill" data-filter="healthy">Healthy</span>
+      </div>
+      <div class="restaurant-grid" id="restaurantGrid"></div>
+    </div>
+
+  </div><!-- end #page-browse -->
+
+  <!-- ── ORDERS PAGE ── -->
+  <div id="page-orders" class="orders-page" style="display: none;">
+    <div class="orders-page-inner">
+      <h2>Your orders</h2>
+      <p class="subtitle">Past and current deliveries</p>
+      <div id="ordersContent"></div>
+    </div>
+  </div>
+
+  <!-- ── CART OVERLAY ── -->
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+  <!-- ── CART DRAWER ── -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="drawer-head">
+      <span class="drawer-title">Your order</span>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="drawer-body" id="cartBody"></div>
+    <div class="drawer-foot" id="cartFoot"></div>
+  </div>
+
+  <!-- ── RESTAURANT MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Data files -->
+  <script src="data-chandigarh.js"></script>
+  <script src="data-patiala.js"></script>
+  <script src="data-rajpura.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
